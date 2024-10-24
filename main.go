@@ -86,7 +86,7 @@ func Configure(configFile string) error {
 	}
 
 	// 设置默认的 Docker 镜像仓库地址
-	config.DockerRegistry = "docker.m.daocloud.io"
+	config.DockerRegistry = "m.daocloud.io"
 
 	return SaveConfig(configFile, config)
 }
@@ -140,7 +140,7 @@ func main() {
 			log.Fatalf("加载配置出错: %v", err)
 		}
 
-		targetImage := fmt.Sprintf("%s/%s/%s", config.Harbor.Domain, config.Harbor.Project, part[1])
+		targetImage := fmt.Sprintf("%s/%s/%s", config.Harbor.Domain, config.Harbor.Project, part[len(part)-1])
 
 		// 从配置的 Docker 镜像仓库地址拉取镜像
 		fmt.Printf("正在从 %s 拉取镜像 %s\n", config.DockerRegistry, sourceImage)
